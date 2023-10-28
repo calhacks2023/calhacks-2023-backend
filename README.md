@@ -1,8 +1,8 @@
 # calhacks-2023-backend
 
-## Run the server
+## Run the server locally
 
-`python main.py`
+`uvicorn main:app --reload`
 
 ## Setup
 
