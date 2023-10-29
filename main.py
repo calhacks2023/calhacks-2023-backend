@@ -4,6 +4,7 @@ from fastapi.testclient import TestClient
 import uvicorn
 from models import RecipeAndRestrictions
 import openai
+import json
 import APIKEY #place your api key in a seperate APIKEY.py file as object 'api_key'
 
 OPENAI_API_KEY = APIKEY.api_key # @RU REMOVE BEFORE COMMITING!!! AHHHHHH
@@ -32,7 +33,10 @@ async def submit_recipe(recipe: RecipeAndRestrictions):
         ,{"role": "user", "content": f"{recipe.recipe}\nAllergies: {recipe.restrictions}"}]
     )
     #print(completion.choices[0].message["content"])
-    return completion.choices[0].message["content"]
+
+    json_object = json.loads(completion.choices[0].message["content"])    
+    return json_object
+
 
 
 
