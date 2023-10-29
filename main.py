@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from models import RecipeAndRestrictions
 
+import time
+
 app = FastAPI()
 
 # Configure CORS to allow requests from your React application's origin
@@ -23,7 +25,12 @@ async def root(request: Request):
 @app.post("/submitrecipe")
 async def submit_recipe(recipe: RecipeAndRestrictions):
     return {'recipe': recipe.recipe, 'restrictions': recipe.restrictions}
-    
+
+@app.post("/testing")
+async def submit_recipe():
+    time.sleep(5)
+    return {'hellos': 'wrlds'}
+
 
 # For deployment on Render
 if __name__ == '__main__':
