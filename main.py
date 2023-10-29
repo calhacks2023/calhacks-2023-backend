@@ -5,6 +5,8 @@ import uvicorn
 from models import RecipeAndRestrictions
 import openai
 import json
+import zilliz
+
 import APIKEY #place your api key in a seperate APIKEY.py file as object 'api_key'
 
 OPENAI_API_KEY = APIKEY.api_key # @RU REMOVE BEFORE COMMITING!!! AHHHHHH
@@ -47,7 +49,13 @@ async def submit_recipe(recipe: RecipeAndRestrictions):
     json_object = json.loads(completion.choices[0].message["content"])    
     return json_object
 
+@app.post("/insertrecipe")
+async def insert_recipe(recipe: RecipeAndRestrictions):
+    zilliz.insert_recipe(recipe.recipe, recipe.restrictions)
 
+@app.post("/searchrecipe")
+async def search_recipe(recipe: RecipeAndRestrictions):
+    return zilliz.search_recipe(zilliz.embed_words(recipe.recipe), recipe.restrictions)
 
 
 # client = TestClient(app) #TESTING
