@@ -56,4 +56,4 @@ def search_recipe(recipe_vector, restrictions):
         if r["distance"] >= 0.05: # Similar, but not too similar
             output_list.append(r["entity"]["recipe"])
     
-    return remove_duplicates(output_list)
+    return remove_duplicates(output_list)[0]
