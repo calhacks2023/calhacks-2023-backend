@@ -1,9 +1,11 @@
 from pymilvus import MilvusClient
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 
+import APIKEY
+
 client = MilvusClient(
-    uri="INSERT_ZILLIZ_URI",
-    token="INSERT_ZILLIZ_TOKEN"
+    uri=APIKEY.zilliz_uri,
+    token=APIKEY.zilliz_key
 )
 
 model_name = "BAAI/bge-small-en"

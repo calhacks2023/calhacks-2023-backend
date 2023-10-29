@@ -2,11 +2,13 @@
 
 from pymilvus import connections, FieldSchema, DataType, CollectionSchema, Collection
 
+import APIKEY
+
 connections.connect(
   alias="default", 
-  uri="INSERT_ZILLIZ_URI",
+  uri=APIKEY.zilliz_uri,
   secure=True,
-  token="INSERT_ZILLIZ_TOKEN"
+  token=APIKEY.zilliz_key
 )
 
 fields = [
